@@ -7,11 +7,11 @@ spec:
   project: default
 
   source:
-    repoURL: https://gitlab.com/nanuchi/argocd-app-config.git
-    targetRevision: HEAD
-    path: dev
+    repoURL: https://github.com/cyberforge33/argocd-app-config.git
+    targetRevision: HEAD  #always last commit in the git repo
+    path: dev #sync or track a specific path
   destination: 
-    server: https://kubernetes.default.svc
+    server: https://kubernetes.default.svc #endpoint of target API server
     namespace: myapp
 
   syncPolicy:
