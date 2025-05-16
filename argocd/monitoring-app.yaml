@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/cyberforge33/argocd-app-config.git
-    targetRevision: main
+    targetRevision: HEAD
     path: apps/monitoring/base
   destination:
     server: https://kubernetes.default.svc
