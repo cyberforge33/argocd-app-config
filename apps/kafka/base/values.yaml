@@ -1,3 +1,11 @@
-replicaCount: 1
-zookeeper:
-  enabled: true
+# apps/kafka/base/values.yaml
+kafka:
+  kraft:
+    enabled: true
+    controller:
+      replicaCount: 1
+    broker:
+      replicaCount: 2
+
+  zookeeper:
+    enabled: false
