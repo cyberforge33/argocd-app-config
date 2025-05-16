@@ -1,5 +1,8 @@
 # apps/kafka/base/values.yaml
 kafka:
+  enabled: true
+  containerPorts:
+    metrics: 9308
   kraft:
     enabled: true
     controller:
@@ -23,7 +26,7 @@ metrics:
           type: "GAUGE"
         }
       ]
-
+      
   serviceMonitor:
     enabled: true
     interval: 10s
