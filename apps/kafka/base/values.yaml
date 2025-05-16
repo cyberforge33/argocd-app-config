@@ -11,10 +11,6 @@ kafka:
     enabled: false
 
 metrics:
-  kafka:
-    enabled: true
-    containerPorts:
-      metrics: 9308
   jmx:
     enabled: true
     config: |-
@@ -27,6 +23,7 @@ metrics:
           type: "GAUGE"
         }
       ]
+
   serviceMonitor:
     enabled: true
     interval: 10s

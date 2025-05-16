@@ -1,8 +1,0 @@
-telemetry:
-  prometheus:
-    enabled: true
-
-serviceMonitor:
-  enabled: true
-  labels:
-    release: prometheus
