@@ -1,0 +1,8 @@
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    labels:
+      release: prometheus
+  customMetrics:
+    pg_stat_statements: true

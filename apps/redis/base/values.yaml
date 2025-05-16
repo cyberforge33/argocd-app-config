@@ -1,0 +1,8 @@
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    interval: 10s
+    scrapeTimeout: 10s
+    labels:
+      release: prometheus
