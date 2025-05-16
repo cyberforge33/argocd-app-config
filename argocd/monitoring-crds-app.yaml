@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring-crds
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/cyberforge33/argocd-app-config.git
+    targetRevision: HEAD
+    path: apps/monitoring/crds
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
