@@ -1,13 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./monitoring.coreos.com_alertmanagerconfigs.yaml
-  - ./monitoring.coreos.com_alertmanagers.yaml
-  - ./monitoring.coreos.com_podmonitors.yaml
-  - ./monitoring.coreos.com_probes.yaml
-  - ./monitoring.coreos.com_prometheusagents.yaml
-  - ./monitoring.coreos.com_prometheuses.yaml
-  - ./monitoring.coreos.com_prometheusrules.yaml
-  - ./monitoring.coreos.com_scrapeconfigs.yaml
-  - ./monitoring.coreos.com_servicemonitors.yaml
-  - ./monitoring.coreos.com_thanosrulers.yaml
+  - ./alertmanagerconfigs.monitoring.coreos.com
+  - ./alertmanagers.monitoring.coreos.com
+  - ./podmonitors.monitoring.coreos.com
+  - ./probes.monitoring.coreos.com
+  - ./prometheusagents.monitoring.coreos.com
+  - ./prometheuses.monitoring.coreos.com
+  - ./prometheusrules.monitoring.coreos.com
+  - ./scrapeconfigs.monitoring.coreos.com
+  - ./servicemonitors.monitoring.coreos.com
+  - ./thanosrulers.monitoring.coreos.com
