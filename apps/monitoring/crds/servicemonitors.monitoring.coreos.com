@@ -1,12 +1,13 @@
----
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.18.0
+    controller-gen.kubebuilder.io/version: v0.17.2
     operator.prometheus.io/version: 0.82.2
   name: servicemonitors.monitoring.coreos.com
 spec:
+  conversion:
+    strategy: None
   group: monitoring.coreos.com
   names:
     categories:
@@ -1232,3 +1233,26 @@ spec:
         type: object
     served: true
     storage: true
+status:
+  acceptedNames:
+    categories:
+    - prometheus-operator
+    kind: ServiceMonitor
+    listKind: ServiceMonitorList
+    plural: servicemonitors
+    shortNames:
+    - smon
+    singular: servicemonitor
+  conditions:
+  - lastTransitionTime: "2025-05-19T20:39:16Z"
+    message: no conflicts found
+    reason: NoConflicts
+    status: "True"
+    type: NamesAccepted
+  - lastTransitionTime: "2025-05-19T20:39:16Z"
+    message: the initial names have been accepted
+    reason: InitialNamesAccepted
+    status: "True"
+    type: Established
+  storedVersions:
+  - v1

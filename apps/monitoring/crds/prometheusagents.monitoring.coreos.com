@@ -1,12 +1,13 @@
----
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.18.0
+    controller-gen.kubebuilder.io/version: v0.17.2
     operator.prometheus.io/version: 0.82.2
   name: prometheusagents.monitoring.coreos.com
 spec:
+  conversion:
+    strategy: None
   group: monitoring.coreos.com
   names:
     categories:
@@ -421,6 +422,7 @@ spec:
                                     pod labels will be ignored. The default value is empty.
                                     The same key is forbidden to exist in both matchLabelKeys and labelSelector.
                                     Also, matchLabelKeys cannot be set when labelSelector isn't set.
+                                    This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                                   items:
                                     type: string
                                   type: array
@@ -435,6 +437,7 @@ spec:
                                     pod labels will be ignored. The default value is empty.
                                     The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.
                                     Also, mismatchLabelKeys cannot be set when labelSelector isn't set.
+                                    This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                                   items:
                                     type: string
                                   type: array
@@ -600,6 +603,7 @@ spec:
                                 pod labels will be ignored. The default value is empty.
                                 The same key is forbidden to exist in both matchLabelKeys and labelSelector.
                                 Also, matchLabelKeys cannot be set when labelSelector isn't set.
+                                This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                               items:
                                 type: string
                               type: array
@@ -614,6 +618,7 @@ spec:
                                 pod labels will be ignored. The default value is empty.
                                 The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.
                                 Also, mismatchLabelKeys cannot be set when labelSelector isn't set.
+                                This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                               items:
                                 type: string
                               type: array
@@ -776,6 +781,7 @@ spec:
                                     pod labels will be ignored. The default value is empty.
                                     The same key is forbidden to exist in both matchLabelKeys and labelSelector.
                                     Also, matchLabelKeys cannot be set when labelSelector isn't set.
+                                    This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                                   items:
                                     type: string
                                   type: array
@@ -790,6 +796,7 @@ spec:
                                     pod labels will be ignored. The default value is empty.
                                     The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.
                                     Also, mismatchLabelKeys cannot be set when labelSelector isn't set.
+                                    This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                                   items:
                                     type: string
                                   type: array
@@ -955,6 +962,7 @@ spec:
                                 pod labels will be ignored. The default value is empty.
                                 The same key is forbidden to exist in both matchLabelKeys and labelSelector.
                                 Also, matchLabelKeys cannot be set when labelSelector isn't set.
+                                This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                               items:
                                 type: string
                               type: array
@@ -969,6 +977,7 @@ spec:
                                 pod labels will be ignored. The default value is empty.
                                 The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.
                                 Also, mismatchLabelKeys cannot be set when labelSelector isn't set.
+                                This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                               items:
                                 type: string
                               type: array
@@ -1585,7 +1594,7 @@ spec:
                         Cannot be updated.
                       items:
                         description: EnvFromSource represents the source of a set
-                          of ConfigMaps or Secrets
+                          of ConfigMaps
                         properties:
                           configMapRef:
                             description: The ConfigMap to select from
@@ -1606,8 +1615,8 @@ spec:
                             type: object
                             x-kubernetes-map-type: atomic
                           prefix:
-                            description: Optional text to prepend to the name of each
-                              environment variable. Must be a C_IDENTIFIER.
+                            description: An optional identifier to prepend to each
+                              key in the ConfigMap. Must be a C_IDENTIFIER.
                             type: string
                           secretRef:
                             description: The Secret to select from
@@ -1870,12 +1879,6 @@ spec:
                               - port
                               type: object
                           type: object
-                        stopSignal:
-                          description: |-
-                            StopSignal defines which signal will be sent to a container when it is being stopped.
-                            If not specified, the default is defined by the container runtime in use.
-                            StopSignal can only be set for Pods with a non-empty .spec.os.name
-                          type: string
                       type: object
                     livenessProbe:
                       description: |-
@@ -3396,7 +3399,7 @@ spec:
                         Cannot be updated.
                       items:
                         description: EnvFromSource represents the source of a set
-                          of ConfigMaps or Secrets
+                          of ConfigMaps
                         properties:
                           configMapRef:
                             description: The ConfigMap to select from
@@ -3417,8 +3420,8 @@ spec:
                             type: object
                             x-kubernetes-map-type: atomic
                           prefix:
-                            description: Optional text to prepend to the name of each
-                              environment variable. Must be a C_IDENTIFIER.
+                            description: An optional identifier to prepend to each
+                              key in the ConfigMap. Must be a C_IDENTIFIER.
                             type: string
                           secretRef:
                             description: The Secret to select from
@@ -3681,12 +3684,6 @@ spec:
                               - port
                               type: object
                           type: object
-                        stopSignal:
-                          description: |-
-                            StopSignal defines which signal will be sent to a container when it is being stopped.
-                            If not specified, the default is defined by the container runtime in use.
-                            StopSignal can only be set for Pods with a non-empty .spec.os.name
-                          type: string
                       type: object
                     livenessProbe:
                       description: |-
@@ -4759,11 +4756,6 @@ spec:
                   Settings related to the OTLP receiver feature.
                   It requires Prometheus >= v2.55.0.
                 properties:
-                  convertHistogramsToNHCB:
-                    description: |-
-                      Configures optional translation of OTLP explicit bucket histograms into native histograms with custom buckets.
-                      It requires Prometheus >= v3.4.0.
-                    type: boolean
                   keepIdentifyingResourceAttributes:
                     description: |-
                       Enables adding `service.name`, `service.namespace` and `service.instance.id`
@@ -4788,7 +4780,6 @@ spec:
                     enum:
                     - NoUTF8EscapingWithSuffixes
                     - UnderscoreEscapingWithSuffixes
-                    - NoTranslation
                     type: string
                 type: object
               overrideHonorLabels:
@@ -7364,10 +7355,6 @@ spec:
                   Users can define their own sharding implementation by setting the
                   `__tmp_hash` label during the target discovery with relabeling
                   configuration (either in the monitoring resources or via scrape class).
-
-                  You can also disable sharding on a specific target by setting the
-                  `__tmp_disable_sharding` label with relabeling configuration. When
-                  the label value isn't empty, all Prometheus shards will scrape the target.
                 format: int32
                 type: integer
               storage:
@@ -8275,6 +8262,7 @@ spec:
                         - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.
 
                         If this value is nil, the behavior is equivalent to the Honor policy.
+                        This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
                       type: string
                     nodeTaintsPolicy:
                       description: |-
@@ -8285,6 +8273,7 @@ spec:
                         - Ignore: node taints are ignored. All nodes are included.
 
                         If this value is nil, the behavior is equivalent to the Ignore policy.
+                        This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
                       type: string
                     topologyKey:
                       description: |-
@@ -9572,7 +9561,7 @@ spec:
                         The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field.
                         The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images.
                         The volume will be mounted read-only (ro) and non-executable files (noexec).
-                        Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33.
+                        Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath).
                         The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.
                       properties:
                         pullPolicy:
@@ -10865,3 +10854,26 @@ spec:
         specReplicasPath: .spec.shards
         statusReplicasPath: .status.shards
       status: {}
+status:
+  acceptedNames:
+    categories:
+    - prometheus-operator
+    kind: PrometheusAgent
+    listKind: PrometheusAgentList
+    plural: prometheusagents
+    shortNames:
+    - promagent
+    singular: prometheusagent
+  conditions:
+  - lastTransitionTime: "2025-05-19T20:39:15Z"
+    message: no conflicts found
+    reason: NoConflicts
+    status: "True"
+    type: NamesAccepted
+  - lastTransitionTime: "2025-05-19T20:39:15Z"
+    message: the initial names have been accepted
+    reason: InitialNamesAccepted
+    status: "True"
+    type: Established
+  storedVersions:
+  - v1alpha1
