@@ -1,20 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: redis
+  name: cert-manager-crds
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/cyberforge33/argocd-app-config.git
-    targetRevision: HEAD
-    path: apps/redis/overlays/dev
+    repoURL: https://charts.jetstack.io
+    chart: cert-manager
+    targetRevision: v1.17.2
+    helm:
+      values: |
+        installCRDs: true
   destination:
     server: https://kubernetes.default.svc
-    namespace: cache
+    namespace: cert-manager
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true
     automated:
-      selfHeal: true
       prune: true
+      selfHeal: true

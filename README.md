@@ -8,7 +8,6 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 # access ArgoCD UI
 kubectl get svc -n argocd
 kubectl port-forward svc/argocd-server 8080:443 -n argocd
-kubectl port-forward svc/kube-prometheus-stack-grafana -n monitoring 3000:80
 
 # for kustomize to work need to edit the config map and add this line kustomize.buildOptions: --enable-helm to the data section
 kubectl get cm argocd-cm -n argocd -o json
