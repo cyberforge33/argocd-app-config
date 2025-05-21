@@ -6,8 +6,15 @@ resources:
 
 patches:
   - target:
-      kind: Application      
+      kind: Application
+      name: kiali-operator
     patch: |-
       - op: replace
-        path: /spec/source/targetRevision
-        value: HEAD
+        path: /spec/source/helm/values
+        value: |
+          cr:
+            create: true
+            namespace: istio-system
+            spec:
+              auth:
+                strategy: anonymous

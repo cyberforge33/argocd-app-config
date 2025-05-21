@@ -10,23 +10,13 @@ spec:
     chart: kiali-operator
     targetRevision: 2.10.0
     helm:
-      values: |
-        auth:
-          strategy: anonymous
-        deployment:
-          accessible_namespaces:
-            - "**"
-        istio_namespace: istio-system
-        external_services:
-          istio:
-            root_namespace: istio-system
+      values: ""
   destination:
     server: https://kubernetes.default.svc
     namespace: kiali
   syncPolicy:
     syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
+      - CreateNamespace=true      
       - PruneLast=true
     automated:
       prune: true
