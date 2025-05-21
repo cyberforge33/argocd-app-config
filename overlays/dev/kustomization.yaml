@@ -3,18 +3,3 @@ kind: Kustomization
 
 resources:
   - ../../base
-
-patches:
-  - target:
-      kind: Application
-      name: kiali-operator
-    patch: |-
-      - op: replace
-        path: /spec/source/helm/values
-        value: |
-          cr:
-            create: true
-            namespace: istio-system
-            spec:
-              auth:
-                strategy: anonymous
