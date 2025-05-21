@@ -7,3 +7,4 @@ resources:
   - ./jaeger-app.yaml
   - ./kiali-app.yaml
   - ./prometheus-app.yaml
+  
