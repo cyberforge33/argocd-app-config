@@ -3,5 +3,7 @@ kind: Kustomization
 
 resources:
   - ./kiali-app.yaml
+  - ./jaeger-app.yaml
+  - ./loki-app.yaml
   - ./prometheus-app.yaml
   - ./grafana-app.yaml

@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jaeger
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/cyberforge33/argocd-app-config.git
+    targetRevision: HEAD
+    path: apps/jaeger    
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: jaeger
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true      
+      - PruneLast=true
+    automated:
+      prune: true
+      selfHeal: true
