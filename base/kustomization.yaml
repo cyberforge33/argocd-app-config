@@ -3,5 +3,5 @@ kind: Kustomization
 
 resources:  
   - ./kube-prometheus-stack-app.yaml  
-  - ./istio-monitor-app.yaml
+  - ./istio-app.yaml
   - ./kiali-app.yaml
