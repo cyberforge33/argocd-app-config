@@ -39,7 +39,7 @@ spec:
           enabled: true
         serviceMonitor:
           enabled: true
-        alertmanager:
+        alertManager:
           enabled: false
         windowsMonitoring:
           enabled: false
