@@ -52,7 +52,7 @@ metadata:
   namespace: istio-system
   labels:
     monitoring: istio-components
-    release: kube-prometheus-stack
+    release: istio
 spec:
   jobLabel: istio
   targetLabels: [app]
