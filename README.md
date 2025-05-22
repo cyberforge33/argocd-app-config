@@ -11,10 +11,17 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 # for kustomize to work need to edit the config map and add this line kustomize.buildOptions: --enable-helm to the data section
 kubectl edit cm argocd-cm -n argocd
 
-# accessing UI
+# Port Forwarding to access UI
 kubectl port-forward -n argocd svc/argocd-server 8443:443
 kubectl port-forward -n monitoring svc/kube-prometheus-stack-grafana 8080:80
+kubectl port-forward -n monitoring svc/kube-prometheus-stack-prometheus 9090:9090
 kubectl port-forward -n istio-system svc/kiali 20001:20001
+
+# Minikube to access UI
+minikube service -n argocd argocd-server
+minikube service -n monitoring kube-prometheus-stack-grafana
+minikube service -n monitoring kube-prometheus-stack-prometheus
+minikube service -n kiali-operator kiali
 
 # login with admin user and below token (as in documentation):
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo
