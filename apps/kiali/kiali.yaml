@@ -28,9 +28,7 @@ metadata:
     app.kubernetes.io/instance: kiali
     app.kubernetes.io/part-of: "kiali"
     app.kubernetes.io/version: "v2.9.0"
-    version: "v2.9.0"
-    helm.sh/chart: kiali-server-2.9.0
-    release: kube-prometheus-stack
+    version: "v2.9.0"    
 data:
   config.yaml: |
     additional_display_details:
