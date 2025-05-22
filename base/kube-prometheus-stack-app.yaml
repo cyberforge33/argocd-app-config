@@ -15,6 +15,11 @@ spec:
           enabled: true
         prometheus:
           enabled: true
+          prometheusSpec:
+            serviceMonitorSelector: {}
+            serviceMonitorNamespaceSelector: {}
+            podMonitorNamespaceSelector: {}
+            podMonitorSelector: {}  
         prometheusOperator:
           enabled: true
         grafana:
@@ -45,8 +50,8 @@ spec:
           enabled: false
         nodeExporter:
           enabled: false
-        thanosRulers:
-          enabled: false    
+        thanosRuler:
+          enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
