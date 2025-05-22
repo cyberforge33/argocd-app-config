@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/cyberforge33/argocd-app-config.git
     targetRevision: HEAD
-    path: apps/istio/istio-monitor
+    path: apps/istio
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-monitor
