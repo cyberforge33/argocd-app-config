@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: istio-monitor
+  name: istio
   namespace: argocd
 spec:
   project: default
@@ -11,7 +11,7 @@ spec:
     path: apps/istio
   destination:
     server: https://kubernetes.default.svc
-    namespace: istio-monitor
+    namespace: istio-system
   syncPolicy:
     syncOptions:
       - CreateNamespace=true      
