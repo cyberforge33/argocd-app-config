@@ -25,7 +25,11 @@ minikube service -n monitoring kube-prometheus-stack-grafana
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo
 kubectl -n monitoring get secret kube-prometheus-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode
 
-# Grafana dashboards https://github.com/istio/istio/tree/master/manifests/addons/dashboards
+# Grafana dashboards - import these into Grafana
+# https://github.com/istio/istio/blob/master/manifests/addons/dashboards/istio-mesh-dashboard.gen.json
+# https://github.com/istio/istio/blob/master/manifests/addons/dashboards/istio-performance-dashboard.json
+# https://github.com/istio/istio/blob/master/manifests/addons/dashboards/istio-service-dashboard.json
+# https://github.com/istio/istio/blob/master/manifests/addons/dashboards/istio-workload-dashboard.json
 
 ```
 </br>
