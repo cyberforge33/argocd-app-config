@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ./kube-prometheus-stack-app.yaml
   - ./kiali-app.yaml
-  - ./service-monitors.yaml
+  - ./service-monitors-app.yaml
