@@ -22,7 +22,6 @@ spec:
             external_services:
               prometheus:
                 url: http://10.100.211.119:9090
-
   destination:
     server: https://kubernetes.default.svc
     namespace: kiali-operator
