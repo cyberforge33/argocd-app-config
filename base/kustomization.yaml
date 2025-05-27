@@ -1,6 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-resources:  
-  - ./kube-prometheus-stack-app.yaml  
-  - ./istio-app.yaml
+resources:
+  - ./kube-prometheus-stack-app.yaml
+  - ./kiali-app.yaml
+  - ./service-monitors.yaml

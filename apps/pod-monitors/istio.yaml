@@ -44,23 +44,3 @@ spec:
     - sourceLabels: [__meta_kubernetes_pod_name]
       action: replace
       targetLabel: pod
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: istio-component-monitor
-  namespace: istio-system
-  labels:
-    monitoring: istio-components
-    release: kube-prometheus-stack
-spec:
-  jobLabel: istio
-  targetLabels: [app]
-  selector:
-    matchExpressions:
-    - {key: istio, operator: In, values: [pilot]}
-  namespaceSelector:
-    any: true
-  endpoints:
-  - port: http-monitoring
-    interval: 15s

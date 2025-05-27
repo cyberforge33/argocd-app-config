@@ -1,17 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: istio
+  name: service-monitors
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/cyberforge33/argocd-app-config.git
     targetRevision: HEAD
-    path: apps/istio
+    path: apps/service-monitors
   destination:
     server: https://kubernetes.default.svc
-    namespace: istio-system
   syncPolicy:
     syncOptions:
       - CreateNamespace=true      
