@@ -9,8 +9,8 @@ spec:
   jobLabel: kiali
   targetLabels: [app]
   selector:
-    matchLabels:
-      app: kiali
+    matchExpressions:
+    - {key: app, operator: In, values: [kiali]}
   namespaceSelector:
     any: true
   endpoints:
